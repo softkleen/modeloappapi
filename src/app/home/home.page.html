@@ -14,6 +14,26 @@
   </ion-header>
 
   <div id="container">
+
+  <h2>Resumo do Pedido</h2>
+  
+  <ion-list>
+    <ion-item *ngFor="let item of carrinho">
+      <ion-label>
+        <h3>Produto ID: {{ item.produto_id }}</h3>
+        <p>Qtd: {{ item.quantidade }}</p>
+      </ion-label>
+      <ion-note slot="end">R$ --</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="success" (click)="finalizarCompra()" [disabled]="carrinho.length === 0">
+    <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+    Finalizar Venda
+  </ion-button>
+
+
+
     <ion-card *ngIf="pedido">
       <ion-card-header>
         <ion-card-title>Pedido #{{pedido.id}}</ion-card-title>

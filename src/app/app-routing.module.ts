@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'pdv',
+    loadChildren: () => import('./pdv/pdv.module').then( m => m.PdvPageModule)
   },
+
 ];
 
 @NgModule({
