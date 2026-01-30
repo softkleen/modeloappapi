@@ -14,6 +14,21 @@
   </ion-header>
 
   <div id="container">
-  
+    <ion-card *ngIf="pedido">
+      <ion-card-header>
+        <ion-card-title>Pedido #{{pedido.id}}</ion-card-title>
+        <ion-card-subtitle>Dados</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Usuario:</strong>{{pedido.usuario_id}}</p>
+        <p><strong>Cliente:</strong>{{pedido.cliente_id}}</p>
+        <p><strong>Data:</strong>{{pedido.data}}</p>
+        <p><strong>Status:</strong>{{pedido.status}}</p>
+        <p><strong>Desconto:</strong>{{pedido.desconto}}</p>
+      </ion-card-content>
+    </ion-card>
+    <div>
+      <p (click)="Listar()">Listar Pedidos</p>
+    </div>
   </div>
 </ion-content>
