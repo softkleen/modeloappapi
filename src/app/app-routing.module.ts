@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'pdv',
     loadChildren: () => import('./pdv/pdv.module').then( m => m.PdvPageModule)
   },
+  {
+    path: 'usuario-add',
+    loadChildren: () => import('./pages/usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
+  },
 
 ];
 
