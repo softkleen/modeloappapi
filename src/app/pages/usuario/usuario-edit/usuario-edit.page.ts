@@ -13,6 +13,7 @@ import { Vendas } from 'src/app/services/vendas';
 export class UsuarioEditPage implements OnInit {
   form!: FormGroup;
   id!: number;
+  niveis:any[]=[]; 
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +32,8 @@ export class UsuarioEditPage implements OnInit {
       nivel: ['', Validators.required],
     });
 
-    this.carregar();
+    this.carregar(); // carregar usuario
+    this.listarNiveis();
   }
   carregar() {
     this.api
@@ -47,6 +49,7 @@ export class UsuarioEditPage implements OnInit {
           });
         }
       });
+
   }// final do método carregar
   salvar(){
     const request = {
@@ -66,4 +69,14 @@ export class UsuarioEditPage implements OnInit {
         duration: 2000 // 2 segundos
       });
   }
+  listarNiveis(){
+    this.api.operacao({
+      requisicao: 'nivel-listar'
+    }).subscribe((res:any)=>{
+      if(res.success){
+        this.niveis = res.data;
+      }
+    });
+  }
+
 }

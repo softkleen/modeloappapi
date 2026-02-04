@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { UsuarioEditPageRoutingModule } from './usuario-edit-routing.module';
@@ -13,7 +12,8 @@ import { UsuarioEditPage } from './usuario-edit.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UsuarioEditPageRoutingModule
+    UsuarioEditPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [UsuarioEditPage]
 })
