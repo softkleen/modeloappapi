@@ -10,13 +10,22 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'pdv',
     loadChildren: () => import('./pdv/pdv.module').then( m => m.PdvPageModule)
   },
   {
     path: 'usuario-add',
     loadChildren: () => import('./pages/usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
+  },
+  {
+    path: 'usuario-list',
+    loadChildren: () => import('./pages/usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule)
+  },
+  {
+    path: 'usuario-edit/:id',
+    loadChildren: () => import('./pages/usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
   },
 
 ];

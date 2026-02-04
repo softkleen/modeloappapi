@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Usuários</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let u of usuarios" (click)="editar(u.id)">
+    <ion-label>
+      <h2>{{u.nome}}</h2>
+      <p>{{u.email}} | Nível: {{u.nivel_id}}</p>
+    </ion-label>
+    <ion-badge color="success" *ngIf="u.ativo == 1">Ativo</ion-badge>
+    <ion-badge color="medium"  *ngIf="u.ativo == 0">Inativo</ion-badge>
+  </ion-item>
+</ion-content>
