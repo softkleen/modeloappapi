@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Vendas } from '../services/vendas';
 import { ToastController } from '@ionic/angular';
+import { Auth } from '../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +13,20 @@ import { ToastController } from '@ionic/angular';
 export class HomePage {
 
 
-  constructor(private api: Vendas, private toast:ToastController) {}
+  constructor(
+     private api: Vendas,
+     private toast:ToastController,
+     private auth: Auth,
+     private router: Router 
+    ) {}
 
   ngOnInit(){
   }
 
-  logout(){}
+  logout(){
+    this.auth.logout();
+    this.router.navigateByUrl('/login', {replaceUrl:true});
+  }
 
   // async Listar(){
   //   // listar pedidos
