@@ -14,14 +14,17 @@ export class Auth {
       senha
     });
   }
-
-  logout(){}
-
-  setUsuario(){}
-
-  getUsuario() {}
+  logout(){
+    localStorage.removeItem('usuario');
+  }
+  setUsuario(dados:any){
+    localStorage.setItem('usuario', JSON.stringify(dados));
+  }
+  getUsuario() {
+    return JSON.parse(localStorage.getItem('usuario') || 'null');
+  }
 
   isLogado():boolean {
-    return true;
+    return !!this.getUsuario();
   }
 }
