@@ -31,7 +31,7 @@ form!: FormGroup;
     const {usuario, senha} = this.form.value;
     this.auth.login(usuario,senha).subscribe((res:any)=>{
       if(res.success){
-        this.auth.setUsuario(res.result);
+        this.auth.setUsuario(res.result); // gravar no localstorage
         this.router.navigateByUrl('/home',{replaceUrl:true})
       } else{
         this.mensagem(res.msg || 'Falha no login');

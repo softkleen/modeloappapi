@@ -9,8 +9,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: '',
-    redirectTo: 'login',
+    path: '', // rota raiz
+    redirectTo: 'splash',
     pathMatch: 'full'
   },
   {
@@ -31,9 +31,14 @@ const routes: Routes = [
     path: 'usuario-edit/:id',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'splash',
+    loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
   },
 
 
