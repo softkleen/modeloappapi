@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Produtos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button><ion-icon name="arrow-back-sharp" ></ion-icon></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let p of produtos" (click)="abrir(p.id)">
+      <ion-label>
+        <h2>{{p.descricao}}</h2>
+        <p>Categoria: <strong>{{p.categoria}}</strong> | R$ <strong> {{p.valor_unit}}</strong>  | Estoque: <strong>{{p.quantidade}}</strong></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

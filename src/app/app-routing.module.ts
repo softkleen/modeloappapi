@@ -40,6 +40,17 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
   },
+  {
+    path: 'produto-list',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/produto/produto-list/produto-list.module').then( m => m.ProdutoListPageModule)
+  },
+  {
+    path: 'produto-detalhe/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/produto/produto-detalhe/produto-detalhe.module').then( m => m.ProdutoDetalhePageModule)
+  },
+
 
 
 ];
