@@ -22,9 +22,7 @@ export class ProdutoListPage implements OnInit {
     this.api.operacao({requisicao:'produto-listar'})
     .subscribe((retornoDaApi:any)=>{
       if(retornoDaApi.success){
-
         this.produtos = retornoDaApi.data;
-     console.log(this.produtos);
       }
     });
   }
