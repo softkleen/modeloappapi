@@ -50,6 +50,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/produto/produto-detalhe/produto-detalhe.module').then( m => m.ProdutoDetalhePageModule)
   },
+  {
+    path: 'produto-imagem/:id',
+    loadChildren: () => import('./pages/produto/produto-imagem/produto-imagem.module').then( m => m.ProdutoImagemPageModule)
+  },
+
 
 
 

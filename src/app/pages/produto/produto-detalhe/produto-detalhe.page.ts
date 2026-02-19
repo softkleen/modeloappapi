@@ -15,7 +15,7 @@ export class ProdutoDetalhePage implements OnInit {
 id!:number;
 form!:FormGroup; 
 categorias:any[]=[];
-produto:any[]=[];
+produto:any=[];
 
   constructor(
     private route: ActivatedRoute,
