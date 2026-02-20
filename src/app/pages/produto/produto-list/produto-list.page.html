@@ -8,6 +8,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+<ion-refresher slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content
+      pullingText="Puxe para atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item *ngFor="let p of produtos" >
       <ion-thumbnail *ngIf="p.imagem" slot="start" (click)="abrirImagem(p.id)">
@@ -23,5 +32,10 @@
 
     </ion-item>
   </ion-list>
+
+
+<ion-infinite-scroll (ionInfinite)="carregarMais($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
 
 </ion-content>

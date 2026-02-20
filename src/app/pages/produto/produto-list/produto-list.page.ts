@@ -19,7 +19,7 @@ export class ProdutoListPage implements OnInit {
     
   }
   listar(){
-    this.api.operacao({requisicao:'produto-listar'})
+    this.api.operacao({requisicao:'produto-listar', limit:100, start:0})
     .subscribe((retornoDaApi:any)=>{
       if(retornoDaApi.success){
         this.produtos = retornoDaApi.data;
@@ -27,7 +27,22 @@ export class ProdutoListPage implements OnInit {
     });
   }
 
+   atualizar(event: any) {
+    this.listar();
 
+    setTimeout(() => {
+      event.target.complete(); // Finaliza animação
+    }, 1000);
+  }
+
+carregarMais(event: any) {
+  //this.pagina++;
+  this.atualizar(event);
+
+  setTimeout(() => {
+    event.target.complete();
+  }, 800);
+}
 
   abrirDetalhes(id:number){
     this.router.navigate(['/produto-detalhe', id]);
