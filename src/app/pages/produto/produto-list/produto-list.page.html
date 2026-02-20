@@ -9,11 +9,18 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let p of produtos" (click)="abrir(p.id)">
-      <ion-label>
+    <ion-item *ngFor="let p of produtos" >
+      <ion-thumbnail *ngIf="p.imagem" slot="start" (click)="abrirImagem(p.id)">
+        <img [src]="'https://sublimegrace.com.br/modelo-api/'+p.imagem">        
+      </ion-thumbnail>
+      <ion-thumbnail *ngIf="!p.imagem" slot="start" (click)="abrirImagem(p.id)">
+        <img [src]="'https://sublimegrace.com.br/modelo-api/uploads/sem_imagem.jpg'">
+      </ion-thumbnail>
+      <ion-label (click)="abrirDetalhes(p.id)">
         <h2>{{p.descricao}}</h2>
         <p>Categoria: <strong>{{p.categoria}}</strong> | R$ <strong> {{p.valor_unit}}</strong>  | Estoque: <strong>{{p.quantidade}}</strong></p>
       </ion-label>
+
     </ion-item>
   </ion-list>
 

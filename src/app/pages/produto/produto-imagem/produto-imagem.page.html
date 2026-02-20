@@ -1,13 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>produto-imagem</ion-title>
+    <ion-title>Imagem do Produto</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">produto-imagem</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-button expand="full" (click)="tirarFoto()">
+    Adicionar ou substituir imagem
+  </ion-button>
+  <ion-img *ngIf="preview" [src]="preview"></ion-img>
+
+  <ion-button
+  expand="full"
+  color="success"
+  (click)="enviar()"
+  [disabled]="!imagemFile"
+  >
+    Enviar
+  </ion-button>
+
 </ion-content>
