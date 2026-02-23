@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class Vendas {
   private url = "https://sublimegrace.com.br/modelo-api";
 
+//set PATH=%PATH%;C:\users\wellington.vsantos4\appdata\roaming\npm
+
   constructor(private http: HttpClient){}
   
   // saída para o primeiro end-point

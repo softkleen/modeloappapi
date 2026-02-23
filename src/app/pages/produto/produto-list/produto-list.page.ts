@@ -11,38 +11,57 @@ import { Vendas } from 'src/app/services/vendas';
 export class ProdutoListPage implements OnInit {
 
   produtos:any[]=[];
+  start: number = 0; // Controla o início da busca
+  limit: number = 20; // Quantidade de itens por página
+  palavra: any;
 
   constructor(private api: Vendas, private router:Router) { }
 
   ngOnInit() {
-    this.listar();
-    
+    this.listar();   
   }
-  listar(){
-    this.api.operacao({requisicao:'produto-listar', limit:100, start:0})
-    .subscribe((retornoDaApi:any)=>{
+  
+  listar(event?: any, atualizar: boolean = false) {
+    // Se for um 'refresh', a gente reseta o contador e a lista
+    if (atualizar) {
+      this.start = 0;
+      this.produtos = [];
+    }
+
+    // gatos e gatas----aqui a gente passa a quantidade de linhas que queremos exibir e incrementar 
+    this.api.operacao({
+      requisicao:'produto-listar', 
+      limit:this.limit, 
+      start:this.start,
+      nome: this.palavra})
+    .subscribe((retornoDaApi:any)=>{       
+       console.log(retornoDaApi.data)
       if(retornoDaApi.success){
-        this.produtos = retornoDaApi.data;
+        // aqui agente acrescenta os novos itens aos existentes
+        this.produtos = [...this.produtos, ...retornoDaApi.data];
+
+        //e por fim incrementa o start para a próxima busca
+        this.start += this.limit; // lembre: start inica valendo  zero(0) e aqui passa a valer 20, 40, 60 e assim por diante
+      }
+      // Finaliza a animação do componente que disparou o evento
+      if (event) {
+        event.target.complete();
+      }
+      // Opcional: Desativar infinite scroll se não houver mais dados
+      if (retornoDaApi.data.length < this.limit && event?.target?.disabled !== undefined) {
+        event.target.disabled = true;
       }
     });
   }
-
-   atualizar(event: any) {
-    this.listar();
-
-    setTimeout(() => {
-      event.target.complete(); // Finaliza animação
-    }, 1000);
+  // Puxar para atualizar (Reseta a lista)
+  atualizar(event: any) {
+    this.listar(event, true);
   }
 
-carregarMais(event: any) {
-  //this.pagina++;
-  this.atualizar(event);
-
-  setTimeout(() => {
-    event.target.complete();
-  }, 800);
-}
+  // Scroll infinito (Carrega mais)
+  carregarMais(event: any) {
+    this.listar(event);
+  }
 
   abrirDetalhes(id:number){
     this.router.navigate(['/produto-detalhe', id]);
@@ -51,5 +70,9 @@ carregarMais(event: any) {
     this.router.navigate(['/produto-imagem', id]);
   }
 
-
+// Função disparada pela Searchbar
+  buscar(event: any) {
+    this.palavra = event.target.value.toLowerCase();
+    this.listar(null, true); // Reinicia a lista com o novo filtro
+  }
 }

@@ -41,7 +41,14 @@
 
   <ion-item>
     <ion-label>última movimentação: {{ produto['data_ultimo_movimento'] | date:'dd/MM/yyyy HH:mm' }}</ion-label>
-    
+  </ion-item>
+  <ion-item>
+      <ion-card *ngIf="produto.imagem" slot="start" (click)="abrirImagem(produto.id)">
+        <img [src]="'https://sublimegrace.com.br/modelo-api/'+produto.imagem">        
+      </ion-card>
+      <ion-card *ngIf="!produto.imagem" slot="start" (click)="abrirImagem(produto.id)">
+        <img [src]="'https://sublimegrace.com.br/modelo-api/uploads/sem_imagem.jpg'">
+      </ion-card> 
   </ion-item>
 
  </form>

@@ -74,6 +74,8 @@ produto:any=[];
       }
     });
   }
-
+   abrirImagem(id:number){
+    this.router.navigate(['/produto-imagem', id]);
+  }
 
 }

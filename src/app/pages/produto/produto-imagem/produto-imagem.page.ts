@@ -38,7 +38,7 @@ export class ProdutoImagemPage implements OnInit {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
     const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-    window.open(url, '_system');
+    //window.open(url, '_system');
 
 
     // instalar pluguin da camera: npm install @capacitor/camera >>>> npx cap sync 
