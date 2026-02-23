@@ -35,7 +35,7 @@ export class ProdutoListPage implements OnInit {
       start:this.start,
       nome: this.palavra})
     .subscribe((retornoDaApi:any)=>{       
-       console.log(retornoDaApi.data)
+
       if(retornoDaApi.success){
         // aqui agente acrescenta os novos itens aos existentes
         this.produtos = [...this.produtos, ...retornoDaApi.data];

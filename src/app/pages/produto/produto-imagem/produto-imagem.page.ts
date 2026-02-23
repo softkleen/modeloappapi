@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
+import { ActionSheetController } from '@ionic/angular';
 import { Vendas } from 'src/app/services/vendas';
 
 @Component({
@@ -19,7 +20,8 @@ export class ProdutoImagemPage implements OnInit {
   constructor(
     private route:ActivatedRoute,
     private api:Vendas,
-    private router:Router
+    private router:Router,
+    private actionSheetCtrl: ActionSheetController // Injete aqui
   ) { 
     this.idProduto = this.route.snapshot.paramMap.get('id');
   }
@@ -28,7 +30,7 @@ export class ProdutoImagemPage implements OnInit {
 
 
 
-  async tirarFoto(){
+  async tirarFoto(fonte: CameraSource){
 
     
     // se quiser pega a geo localização (coordenadas GPS - Glonas)
@@ -46,7 +48,7 @@ export class ProdutoImagemPage implements OnInit {
       quality: 80,
       allowEditing:false,
       resultType: CameraResultType.Base64,
-      source:CameraSource.Prompt
+      source:fonte
     });
     this.preview = 'data:image/jpeg;base64, ' + foto.base64String; 
     const blob  = this.base64ToBlob(foto.base64String!,'image/jpeg');
@@ -76,5 +78,35 @@ export class ProdutoImagemPage implements OnInit {
     });
 
   }
+
+
+async selecionarFonte() {
+  const actionSheet = await this.actionSheetCtrl.create({
+    header: 'Selecionar Foto do Produto',
+    mode: 'ios', // Força o visual elegante do iOS mesmo no Android
+    buttons: [
+      {
+        text: 'Tirar Foto (Câmera)',
+        icon: 'camera-outline',
+        handler: () => {
+          this.tirarFoto(CameraSource.Camera);
+        }
+      },
+      {
+        text: 'Escolher da Galeria',
+        icon: 'images-outline',
+        handler: () => {
+          this.tirarFoto(CameraSource.Photos);
+        }
+      },
+      {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel'
+      }
+    ]
+  });
+  await actionSheet.present();
+}
 
 }

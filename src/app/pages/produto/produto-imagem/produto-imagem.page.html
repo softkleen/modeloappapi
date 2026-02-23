@@ -5,10 +5,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-button expand="full" (click)="tirarFoto()">
-    Adicionar ou substituir imagem
-  </ion-button>
-  <ion-img *ngIf="preview" [src]="preview"></ion-img>
+  <ion-button expand="block" (click)="selecionarFonte()">
+  <ion-icon name="camera" slot="start"></ion-icon>
+  Adicionar Foto
+</ion-button>
+
 
   <ion-button
   expand="full"
@@ -20,3 +21,14 @@
   </ion-button>
 
 </ion-content>
+
+
+
+
+
+
+<ion-img *ngIf="preview" [src]="preview"></ion-img>
+
+<ion-button expand="block" color="success" (click)="enviar()" [disabled]="!imagemFile">
+  Enviar para o Servidor
+</ion-button>
