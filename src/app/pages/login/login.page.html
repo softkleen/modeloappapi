@@ -1,22 +1,71 @@
-<ion-header [translucent]="true">
+<ion-content [fullscreen]="true" class="login-content">
 
-</ion-header>
+  <div class="login-wrapper">
 
-<ion-content [fullscreen]="true" class="ion-padding">
- <form [formGroup]="form" (ngSubmit)="entrar()">
-  <ion-item>
-    <ion-label position="floating">Usuário (Email)</ion-label>
-    <ion-input formControlName="usuario"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Senha</ion-label>
-    <ion-input type="password" formControlName="senha"></ion-input>
-  </ion-item>
+    <!-- Painel lateral (aparece apenas no desktop) -->
+    <div class="login-side">
+      <div class="side-content">
+        <ion-icon name="analytics-outline"></ion-icon>
+        <h2>Sistema Cormercia TDS01</h2>
+        <p>Gerencie seus dados com segurança e eficiência.</p>
+      </div>
+    </div>
 
-  <ion-button expand="block" type="submit" [disabled]="form.invalid">
-    Entrar
-  </ion-button>
+    <!-- Área do formulário -->
+    <div class="login-container">
 
- </form>
+      <div class="logo-area">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <h1>Bem-vindo</h1>
+        <p>Acesse sua conta</p>
+      </div>
+
+      <ion-card class="login-card ">
+        <ion-card-content>
+
+          <form [formGroup]="form" (ngSubmit)="entrar()">
+
+            <ion-item class="input-item" lines="none">
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              <ion-input
+                type="email"
+                placeholder="Email"
+                formControlName="usuario">
+              </ion-input>
+            </ion-item>
+
+            <ion-item class="input-item" lines="none">
+              <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+              <ion-input
+                type="password"
+                placeholder="Senha"
+                formControlName="senha">
+              </ion-input>
+            </ion-item>
+
+            <div class="forgot-password">
+              <ion-text color="medium">
+                <small>Esqueci minha senha</small>
+              </ion-text>
+            </div>
+
+            <ion-button
+              expand="block"
+              shape="round"
+              type="submit"
+              class="login-button"
+              [disabled]="form.invalid">
+
+              Entrar
+            </ion-button>
+
+          </form>
+
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+  </div>
 
 </ion-content>
