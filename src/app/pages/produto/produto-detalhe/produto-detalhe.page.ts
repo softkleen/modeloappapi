@@ -12,7 +12,7 @@ import { Vendas } from 'src/app/services/vendas';
   standalone:false
 })
 export class ProdutoDetalhePage implements OnInit {
-id!:number;
+id!:any;
 form!:FormGroup; 
 categorias:any[]=[];
 produto:any=[];
@@ -27,7 +27,7 @@ produto:any=[];
 
   ngOnInit() {
     
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = this.route.snapshot.paramMap.get('id');
     this.listaCategorias();
     this.buscaProduto(this.id);
     
@@ -70,7 +70,7 @@ produto:any=[];
         this.api.operacao({requisicao:'produto-listar', id:this.id}).subscribe((res:any)=>{
       if(res.success){
         this.produto = res.data
-        console.log(this.produto);
+
       }
     });
   }
